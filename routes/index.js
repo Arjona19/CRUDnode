@@ -5,11 +5,11 @@ var multer = require('multer');
 var db = require("../conexion/conexion");
 var fs = require('fs');
 
-router.use(express.static('public'));
+//router.use(express.static('public'));
 
 let storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'images')
+    cb(null, 'public/images')
   },
   filename: (req, file, cb) => {
     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
@@ -58,7 +58,7 @@ router.get('/gestionUsuario/editar/:idusuario/', function (req, res, next) {
 
 router.post('/editarUsuario/editar/:idusuario/:foto', upload.single('foto'), function (req, res, next) {
   const { idusuario, foto } = req.params;
-  fs.unlink('images/'+[foto], (error) => {
+  fs.unlink('public/images/'+[foto], (error) => {
     if (error) {
       throw error;
     }
@@ -79,7 +79,7 @@ router.post('/editarUsuario/editar/:idusuario/:foto', upload.single('foto'), fun
 //Eliminar usuarios
 router.get('/gestionUsuario/eliminar/:idusuario/:foto', function (req, res, next) {
   const { idusuario, foto } = req.params;
-  fs.unlink('images/'+[foto], (error) => {
+  fs.unlink('public/images/'+[foto], (error) => {
     if (error) {
       throw error;
     }
