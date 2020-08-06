@@ -58,7 +58,7 @@ router.get('/gestionUsuario/editar/:idusuario/', function (req, res, next) {
 
 router.post('/editarUsuario/editar/:idusuario/:foto', upload.single('foto'), function (req, res, next) {
   const { idusuario, foto } = req.params;
-  fs.unlink('/images/'+[foto], (error) => {
+  fs.unlink('app/routes/images/'+[foto], (error) => {
     if (error) {
       throw error;
     }
@@ -79,7 +79,7 @@ router.post('/editarUsuario/editar/:idusuario/:foto', upload.single('foto'), fun
 //Eliminar usuarios
 router.get('/gestionUsuario/eliminar/:idusuario/:foto', function (req, res, next) {
   const { idusuario, foto } = req.params;
-  fs.unlink('/images/'+[foto], (error) => {
+  fs.unlink('app/routes/images/'+[foto], (error) => {
     if (error) {
       throw error;
     }
