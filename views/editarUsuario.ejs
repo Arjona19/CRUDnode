@@ -1,0 +1,64 @@
+<%- include layouts/header.ejs %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="text-center"><%= title %></h1>
+        </div>
+        <div class="col-md-4">
+            <a href="/gestionUsuario">
+                <button type="button" class="btn btn-outline-secondary">Regresar</button>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form method="POST" action="/editarUsuario/editar/<%= data[0].idusuario %>/<%= data[0].foto %>" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputNombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre"
+                                value="<%= data[0].nombre %>">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputApellido">Apellidos</label>
+                            <input type="text" class="form-control" id="apellido" name="apellido"
+                                value="<%= data[0].apellido %>">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputSexo">Sexo</label>
+                            <select class="form-control" id="sexo" name="sexo">
+                                <option value="0">Seleccione...</option>
+                                <option value="mujer">Mujer</option>
+                                <option value="hombre">Hombre</option>
+                            </select>
+                            <label for="exampleInputSexo">Selección anterior: <%= data[0].sexo %></label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputApellido">Foto</label>
+                            <input type="file" class="form-control" id="foto" name="foto">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <img src="/images/<%= data[0].foto %>" class="card-img-top" alt="Imagen" height="150px"
+                            width="50px">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-outline-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include layouts/footer.ejs %>

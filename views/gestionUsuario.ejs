@@ -1,0 +1,49 @@
+<%- include layouts/header.ejs %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="text-center"><%= title %></h1>
+        </div>
+        <div class="col-md-4">
+            <a href="/agregarUsuario">
+                <button type="button" class="btn btn-outline-info">Nuevo</button>
+            </a>            
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" width="200px">Imagen</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col" width="200px">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i = 0; i < Usuarios.length; i++){ %>
+                    <tr>
+                        <td><img src="/images/<%= Usuarios[i].foto %>" class="card-img-top" alt="Imagen" height="100px"></td>
+                        <td><%= Usuarios[i].nombre %></td>
+                        <td><%= Usuarios[i].apellido %></td>
+                        <td><%= Usuarios[i].sexo %></td>
+                        <td>
+                            <a href="/gestionUsuario/editar/<%= Usuarios[i].idusuario %>">
+                                <button type="button" class="btn btn-outline-warning">Editar</button>
+                            </a>
+                            <a href="/gestionUsuario/eliminar/<%= Usuarios[i].idusuario %>/<%= Usuarios[i].foto %>">
+                                <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                            </a>
+                        </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<%- include layouts/footer.ejs %>
