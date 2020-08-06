@@ -9,7 +9,7 @@ var fs = require('fs');
 
 let storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null,'app/public/images')
+    cb(null,'/images')
   },
   filename: (req, file, cb) => {
     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
