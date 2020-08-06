@@ -9,7 +9,7 @@ var fs = require('fs');
 
 let storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null,__dirname + '/images')
+    cb(null,__dirname.replace('routes','public/images'))
   },
   filename: (req, file, cb) => {
     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
@@ -27,6 +27,7 @@ router.get('/', function (req, res, next) {
 router.get('/gestionUsuario', function (req, res, next) {
   db.query("SELECT * FROM usuario", function (err, resultados) {
     res.render('gestionUsuario', { title: 'Gestión de usuarios', Usuarios: resultados });
+    //console.log();
   });
 });
 
@@ -58,7 +59,7 @@ router.get('/gestionUsuario/editar/:idusuario/', function (req, res, next) {
 
 router.post('/editarUsuario/editar/:idusuario/:foto', upload.single('foto'), function (req, res, next) {
   const { idusuario, foto } = req.params;
-  fs.unlink('app/routes/images/'+[foto], (error) => {
+  fs.unlink(__dirname.replace('routes','public/images')+[foto], (error) => {
     if (error) {
       throw error;
     }
@@ -79,7 +80,7 @@ router.post('/editarUsuario/editar/:idusuario/:foto', upload.single('foto'), fun
 //Eliminar usuarios
 router.get('/gestionUsuario/eliminar/:idusuario/:foto', function (req, res, next) {
   const { idusuario, foto } = req.params;
-  fs.unlink('app/routes/images/'+[foto], (error) => {
+  fs.unlink(__dirname.replace('routes','public/images')+[foto], (error) => {
     if (error) {
       throw error;
     }
